@@ -82,6 +82,10 @@ main {
     position: relative;
     overflow: hidden;
     padding: 80px 20px; /* Moved padding here from main */
+    min-height: 300px; /* Set a min-height to prevent layout shifts */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero {

@@ -74,12 +74,88 @@ nav ul li a:hover {
 /* Main Content */
 main {
     text-align: center;
-    padding: 80px 20px;
+    /* Removed padding from main to allow slider to be full-width if needed */
+}
+
+/* Hero Slider Styles */
+.slider-container {
+    position: relative;
+    overflow: hidden;
+    padding: 80px 20px; /* Moved padding here from main */
 }
 
 .hero {
     max-width: 800px;
     margin: 0 auto;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.8s ease-in-out;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.hero.active {
+    opacity: 1;
+    position: relative; /* Make the active slide take up space */
+    transform: translate(0, 0);
+    top: 0;
+    left: 0;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    line-height: 30px;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.slider-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.prev-btn {
+    left: 30px;
+}
+
+.next-btn {
+    right: 30px;
+}
+
+.slider-dots {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: #fff;
 }
 
 .hero h1 {
@@ -144,8 +220,8 @@ footer {
 /* Products Grid Layout */
 .products {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px; /* Reduced gap for a tighter 4-column layout */
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -167,10 +243,12 @@ footer {
 }
 
 .product-card img {
-    max-width: 100%;
-    height: auto;
+    width: 100%;
+    height: 200px; /* Fixed height for all images */
+    object-fit: contain; /* Ensures the whole image fits without distortion */
     border-radius: 10px;
     margin-bottom: 20px;
+    background-color: #3a3a3c; /* Added a background for images that don't fill the space */
 }
 
 .product-card h3 {
